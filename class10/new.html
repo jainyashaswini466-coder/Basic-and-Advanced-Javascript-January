@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let newPara = document.createElement('p')
+
+        newPara.textContent = "This is a new paragraph!"
+        newPara.style.padding = "5px"
+        newPara.style.backgroundColor = "yellow"
+        
+        document.body.append(newPara)
+
+
+        // newPara.remove()
+        document.body.removeChild(newPara)
+
+    </script>
+</body>
+</html>

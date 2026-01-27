@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="main-heading" class="description">January, 22nd</h1>
+    <p class="description">This is a paragraph</p>
+    <button id="change-btn">Click me</button>
+    <h1>heading 2</h1>
+    <script>
+        console.log("DOM ready!")
+
+        //getElementsByClassName()
+        //getElementById()
+        //getElementByTagName()         //html collection
+    
+        let heading = document.getElementsByClassName('description')
+        
+         console.log(heading)
+        // console.log(heading.textContent)
+
+
+        let headingss = document.getElementsByTagName('h1')
+        //console.log(headingss)
+
+
+        //querySelector('button')
+        let btn = document.querySelector('.description')    //always return one elemeny
+        console.log(btn)
+
+        //querySelectorAll => returns a nodelist
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">This is a box</div>
+    <p></p>
+    <div class="sample">1</div>
+    <div class="sample">2</div>
+
+    <script>
+        //modifying styles
+        {let box = document.querySelector('p')
+        
+        // console.log(box)
+        box.style.width = "2px"
+        box.style.backgroundColor = "blue"
+        box.style.color = 'white'
+        box.style.padding = "20px"
+        box.style.fontSize = "24px"
+        box.style.border = "2px dotted white"
+        box.style.borderRadius = "50px"
+
+        document.body.style.backgroundColor = 'grey'}
+
+        //Add/ Remove classes
+        let sampleDivs = document.querySelectorAll('.sample')
+
+        let targetDiv = sampleDivs[1]
+        console.log(targetDiv)
+
+        targetDiv.classList.add('target')
+
+        targetDiv.classList.remove('sample')
+
+        targetDiv.classList.toggle('sample')
+
+        if(targetDiv.classList.contains('sample')){
+            console.log("div has sample class")
+        }
+
+        // console.log(targetDiv.classList)
+    </script>
+</body>
+</html>
