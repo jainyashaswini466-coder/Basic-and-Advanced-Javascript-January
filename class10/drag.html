@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Better Instagram</title>
+    <style>
+        /* Define styles for all image divs */
+        .image {
+            height: 300px;
+            width: 200px;
+            margin: 20px;
+            cursor: move;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background-size: cover;
+            background-position: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        /* Individual image backgrounds */
+        #div1 { background-image: url("https://picsum.photos/id/237/200/300"); }
+        #div2 { background-image: url("https://picsum.photos/seed/picsum/200/300"); }
+        #div3 { background-image: url("https://picsum.photos/200/300?grayscale"); }
+        #div4 { background-image: url("https://picsum.photos/200/300/"); }
+        #div5 { background-image: url("https://picsum.photos/200/300.jpg"); }
+        #div6 { background-image: url("https://picsum.photos/id/102/200/300"); }
+
+        .flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            min-height: 100vh;
+        }
+
+        .dragging {
+            opacity: 0.5;
+            border: 3px dashed white;
+        }
+
+        .drop-target {
+            border: 3px solid #00c3ff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Arrange Images by drag and drop</h1>
+    <div class="flex" id="parent">
+        <!-- Elements with divX IDs and data attributes for dragX -->
+        <div draggable="true" class="image" id="div1" data-drag-id="drag1">Image 1</div>
+        <div draggable="true" class="image" id="div2" data-drag-id="drag2">Image 2</div>
+        <div draggable="true" class="image" id="div3" data-drag-id="drag3">Image 3</div>
+        <div draggable="true" class="image" id="div4" data-drag-id="drag4">Image 4</div>
+        <div draggable="true" class="image" id="div5" data-drag-id="drag5">Image 5</div>
+        <div draggable="true" class="image" id="div6" data-drag-id="drag6">Image 6</div>
+    </div>
+
+    <script>
+        // document.addEventListener('DOMContentLoaded', function() {
+            const parent = document.getElementById('parent');
+            const images = parent.querySelectorAll('.image');
+            
+            // Initialize drag and drop
+            images.forEach(img => {
+                img.addEventListener('dragstart', handleDragStart);
+                img.addEventListener('dragover', handleDragOver);
+                img.addEventListener('dragenter', handleDragEnter);
+                img.addEventListener('dragleave', handleDragLeave);
+                img.addEventListener('drop', handleDrop);
+                img.addEventListener('dragend', handleDragEnd);
+            });
+
+            let draggedItem = null;
+            let draggedItemOriginalId = null;
+
+            function handleDragStart(e) {
+                draggedItem = this;
+                // console.log('line 87', e,"draggedItem", draggedItem)
+
+                draggedItemOriginalId = this.id;
+                
+                // Set temporary drag ID for testing
+                this.id = this.dataset.dragId;
+                
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/plain', this.dataset.dragId);
+                this.classList.add('dragging');
+                
+                // Ensure element remains in layout
+                this.style.position = 'relative';
+                this.style.zIndex = '1000';
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+            }
+
+            function handleDragEnter(e) {
+                e.preventDefault();
+                if (this !== draggedItem) {
+                    this.classList.add('drop-target');
+                }
+            }
+
+            function handleDragLeave() {
+                this.classList.remove('drop-target');
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (draggedItem !== this) {
+                    // Get the nodes
+                    const draggedNode = draggedItem;
+                    const targetNode = this;
+                    
+                    // Create temporary markers
+                    const draggedMarker = document.createElement('div');
+                    const targetMarker = document.createElement('div');
+                    
+                    // Insert markers
+                    parent.insertBefore(draggedMarker, draggedNode);
+                    parent.insertBefore(targetMarker, targetNode);
+                    
+                    // Swap the nodes
+                    parent.insertBefore(draggedNode, targetMarker);
+                    parent.insertBefore(targetNode, draggedMarker);
+                    
+                    // Remove markers
+                    parent.removeChild(draggedMarker);
+                    parent.removeChild(targetMarker);
+                }
+                
+                this.classList.remove('drop-target');
+            }
+
+            function handleDragEnd() {
+                // Restore original ID
+                if (draggedItemOriginalId) {
+                    this.id = draggedItemOriginalId;
+                    draggedItemOriginalId = null;
+                }
+                
+                // Reset styles
+                this.style.position = '';
+                this.style.zIndex = '';
+                
+                this.classList.remove('dragging');
+                images.forEach(img => img.classList.remove('drop-target'));
+            }
+        // });
+    </script>
+</body>
+</html>

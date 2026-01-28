@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="text-input" placeholder="Type something....">
+    <p id = "display"></p>
+
+    <script>
+        let search = document.querySelector("#text-input")
+        let display = document.querySelector('#display');
+
+        // search.addEventListener('keydown',function(event){
+        //     // console.log(event)
+        //     display.textContent = `You pressed : ${search.value} `
+        // })
+
+            search.addEventListener('keyup',function(event){
+            console.log("key was released")
+            display.textContent = `Current value: ${search.value}`
+            // display.textContent = `You pressed : ${event.key} `
+        })
+   
+        // search.addEventListener("input", function(){
+        //     display.textContent = `Searching for : ${search.value}`
+        // })
+   </script>
+</body>
+</html>

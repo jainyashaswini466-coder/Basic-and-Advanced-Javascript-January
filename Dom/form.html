@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="login-form">
+      Username :  <input type="text" id="username">
+      <br>
+      Password :  <input type="password" id="password">
+        <br>
+        <button type="submit">Enter</button>
+    </form>
+    <p id="message"></p>
+    <script>
+        let form = document.querySelector('#login-form')
+        let message = document.querySelector('#message')
+
+        form.addEventListener('submit', function(e){
+            e.preventDefault()
+            //stops the default browser behavior, essential for form handling.
+
+            let username = document.querySelector('#username').value
+            let password = document.querySelector('#password')
+
+            if(username === "admin" && password.value === "something"){
+                message.textContent = "Login successful"
+            }
+            else{
+                message.textContent = "invalid creds!"
+            }
+        })
+    </script>
+</body>
+</html>

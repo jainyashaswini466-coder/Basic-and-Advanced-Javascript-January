@@ -26,6 +26,8 @@
             table.style.border = "1px solid black"
 
             let th1 = document.createElement('th')
+
+            //td - table data, tr - table row
             th1.textContent = "Name"
             th1.style.border = "1px solid black"
             let th2 = document.createElement('th')
@@ -33,9 +35,37 @@
 
             let headerRow = document.createElement('tr')
 
+            
             headerRow.append(th1,th2)
 
             table.append(headerRow)
+
+            students.forEach(student=>{
+                
+            let row = table.insertRow()
+            let cell1 = row.insertCell()
+            cell1.textContent = student.name
+            let cell2 = row.insertCell()
+            cell2.textContent = student.marks
+
+            // let row = document.createElement('tr')
+            // let c1 = document.createElement('td')
+            // c1.textContent = student.name
+            // let c2 = document.createElement('td')
+            // c2.textContent = student.marks
+            //     row.append(c1, c2)
+            // table.append(row)
+
+
+
+})
+
+
+
+
+
+
+
 
             container.append(table)
 

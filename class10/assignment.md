@@ -1,3 +1,14 @@
+Counter App
+<div> Containing the count
+3 buttons, increase, decrease and reset
+
+
+
+
+
+
+
+
 Create a profile card with :
 Name, age, email, city
 <!-- Button to edit - makes a field editable

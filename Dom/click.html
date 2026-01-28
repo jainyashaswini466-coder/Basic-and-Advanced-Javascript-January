@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Click Me!</button>
+<p id = "output"></p>
+
+<script>
+    let button = document.querySelector("#btn");
+    let output = document.querySelector('#output')
+
+    button.addEventListener("click",function(){
+        output.textContent = "Button was clicked"
+        console.log("First handler")
+    })
+
+    button.addEventListener("click",()=>{
+        output.textContent = "Button was clicked double"
+        console.log("Second Handler")
+    })
+
+//addEventListener attaches a function to run when the event happens.
+//The function is callend the 'Event Handler'
+</script>
+</body>
+</html>

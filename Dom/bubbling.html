@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="parent">
+        Parent Div
+        <button id="child">Child button</button>
+
+        <script>
+            let parent = document.querySelector("#parent")
+            let child = document.querySelector("#child")
+
+            parent.style.border = "2px black solid"
+            child.addEventListener("click",function(e){
+                console.log("Child clicked")
+                // e.stopPropagation() //stopped bubbling
+            })
+            parent.addEventListener("click",function(){
+                console.log("Parent clicked")
+            })
+
+            //Events "bubble up" child to parent.
+        </script>
+
+    </div>
+</body>
+</html>
